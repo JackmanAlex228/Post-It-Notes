@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<button @click="addUser">Add Alex</button> <!-- IT WORKS! -->
+		<button @click="addUser">Add Dex</button> <!-- IT WORKS! -->
 		<!--TODO: Add a button to retrieve user information (getUser)-->
 	</div>
 </template>
@@ -18,7 +18,7 @@ export default {
 			console.log("Adding user with username 'Alex'");
 			try {
 				const docRef = await addDoc(collection(db, 'users'), {
-					username: 'Alex'
+					username: 'Dex'
 				});
 				console.log("Document written with ID: ", docRef.id);
 			} catch (e) {
