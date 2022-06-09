@@ -3,13 +3,18 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <NavigationBar />
-    <AddUser/>
+    <section class="section">
+      <div class="container is-desktop">
+        <router-view />
+      </div>
+    </section>
+    <!-- <AddUser/> -->
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import AddUser from './components/AddUser.vue'
+// import AddUser from './components/AddUser.vue'
 import NavigationBar from './components/NavigationBar.vue'
 
 export default {
@@ -17,7 +22,7 @@ export default {
   components: {
     // HelloWorld,
     NavigationBar,
-    AddUser
+    // AddUser
 }
 }
 </script>

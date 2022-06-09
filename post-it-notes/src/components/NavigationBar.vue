@@ -21,9 +21,6 @@
               :to="item.to"
               class="button is-primary"
             >
-              <!-- <span class="icon">
-                <i :class="`fas fa-${item.icon}`"></i>
-              </span> -->
               <span class="icon">
                 <font-awesome-icon :icon="`fa-solid fa-${item.icon}`" />
               </span>
