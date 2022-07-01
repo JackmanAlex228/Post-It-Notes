@@ -28,15 +28,14 @@
               </router-link>
             </template>
             <template v-if="isUserAuth">
-              <!-- TODO: :to prop required, figure it out-->
-              <router-link
+              <button
                 @click="signOutAction" 
                 class="button is-primary">
                 <span class="icon">
                   <font-awesome-icon :icon="`fa-sign-out-alt`"/>
                 </span>
                 <strong>Logout</strong>
-              </router-link>
+              </button>
             </template>
           </div>
         </div>
