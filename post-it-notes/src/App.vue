@@ -8,6 +8,13 @@
         <router-view />
       </div>
     </section>
+    <section v-if="isUserAuth" class="section">
+      <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+          Welcome {{ getUser.email }}
+        </div>
+      </div>
+    </section>
     <!-- <AddUser/> -->
   </div>
 </template>
@@ -16,6 +23,7 @@
 // import HelloWorld from './components/HelloWorld.vue'
 // import AddUser from './components/AddUser.vue'
 import NavigationBar from './components/NavigationBar.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
@@ -23,7 +31,10 @@ export default {
     // HelloWorld,
     NavigationBar,
     // AddUser
-}
+  },
+  computed: {
+    ...mapGetters(['getUser', 'isUserAuth'])
+  }
 }
 </script>
 

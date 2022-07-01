@@ -1,5 +1,5 @@
 <template>
-  <div class="columns">
+  <div class="columns" v-if="!isUserAuth">
     <div class="column is-half is-offset-one-quarter">
       <div class="card">
         <div class="card-content">
@@ -71,7 +71,9 @@
 </template>
 
 <script>
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { auth } from '@/firebase'
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -82,13 +84,18 @@ export default {
       validationErrors: []
     };
   },
+  computed: {
+    ...mapGetters(["isUserAuth"])
+  },
   methods: {
+    ...mapActions(['signUpAction']),
     resetError() {
       this.validationErrors = [];
     },
     validate() {
       // Clear the errors before we validate again
       this.resetError();
+
       // email validation
       if (!this.email) {
         this.validationErrors.push("<strong>E-mail</strong> cannot be empty.");
@@ -96,6 +103,7 @@ export default {
       if (/.+@.+/.test(this.email) != true) {
         this.validationErrors.push("<strong>E-mail</strong> must be valid.");
       }
+
       // password validation
       if (!this.password) {
         this.validationErrors.push("<strong>Password</strong> cannot be empty");
@@ -108,22 +116,27 @@ export default {
       if (!(this.password === this.passwordRepeat)) {
         this.validationErrors.push("<strong>Passwords</strong> did not match");
       }
+
       // when valid then sign in
       if (this.validationErrors.length <= 0) {
         this.signUp();
       }
     },
     signUp() {
+      this.signUpAction({
+        email: this.email,
+        password: this.password
+      })
       // @TODO signUn logic will come here
-      const auth = getAuth();
-      createUserWithEmailAndPassword(auth, this.email, this.password)
-        .then((response) => {
-          // Signed in
-          console.log("Success! ", response);
-        })
-        .catch(error => {
-          console.log("Failed!", error);
-        });
+      // const auth = getAuth();
+      // createUserWithEmailAndPassword(auth, this.email, this.password)
+      //   .then((response) => {
+      //     // Signed in
+      //     console.log("Success! ", response);
+      //   })
+      //   .catch(error => {
+      //     console.log("Failed!", error);
+      //   });
     }
   }
 };
