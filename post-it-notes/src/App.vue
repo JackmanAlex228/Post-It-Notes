@@ -1,37 +1,41 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+
+    <!-- Navigation bar, on top-->
     <NavigationBar />
     <section class="section">
       <div class="container is-desktop">
         <router-view />
       </div>
     </section>
+
+    <!-- Main section of the page -->
     <section v-if="isUserAuth" class="section">
       <div class="columns">
         <div class="column is-half is-offset-one-quarter">
-          Welcome {{ getUser.email }}
+          <div class="row">
+            Welcome {{ getUser.email }}
+          </div>
+          <div class="row">
+            <CreateNote />
+          </div>
         </div>
       </div>
     </section>
-    <!-- <AddUser/> -->
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// import AddUser from './components/AddUser.vue'
 import NavigationBar from './components/NavigationBar.vue'
+import CreateNote from './components/CreateNote.vue'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
     NavigationBar,
-    // AddUser
-  },
+    CreateNote
+},
   data() {
     return {
       kaas: true
