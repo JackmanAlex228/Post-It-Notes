@@ -23,7 +23,7 @@
 // import HelloWorld from './components/HelloWorld.vue'
 // import AddUser from './components/AddUser.vue'
 import NavigationBar from './components/NavigationBar.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'App',
@@ -32,8 +32,19 @@ export default {
     NavigationBar,
     // AddUser
   },
+  data() {
+    return {
+      kaas: true
+    }
+  },
+  mounted() {
+    this.authAction()
+  },
   computed: {
     ...mapGetters(['getUser', 'isUserAuth'])
+  },
+  methods: {
+    ...mapActions(['authAction'])
   }
 }
 </script>

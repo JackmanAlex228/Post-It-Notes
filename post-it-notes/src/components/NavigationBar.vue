@@ -14,6 +14,8 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
+
+            <!-- Display only if the user has not been authenticated -->
             <template v-if="!isUserAuth">
               <router-link
                 v-for="item of navItems"
@@ -27,6 +29,8 @@
                 <strong>{{ item.name }}</strong>
               </router-link>
             </template>
+
+            <!-- Display only if the user has been authenticated -->
             <template v-if="isUserAuth">
               <button
                 @click="signOutAction" 
