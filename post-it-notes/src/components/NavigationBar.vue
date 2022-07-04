@@ -1,4 +1,3 @@
-
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand" style="align-items: center;">
@@ -7,7 +6,7 @@
         style="height: 50px; margin: 20px;"
       />
       <span class="has-text-weight-medium is-size-4">
-        Vue.js + Veux + Firebase = ❤️!
+        Post-it Notes!
       </span>
     </div>
 
@@ -15,20 +14,33 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <router-link
-              v-for="item of navItems"
-              :key="item.name"
-              :to="item.to"
-              class="button is-primary"
-            >
-              <!-- <span class="icon">
-                <i :class="`fas fa-${item.icon}`"></i>
-              </span> -->
-              <span class="icon">
-                <font-awesome-icon :icon="`fa-solid fa-${item.icon}`" />
-              </span>
-              <strong>{{ item.name }}</strong>
-            </router-link>
+
+            <!-- Display only if the user has not been authenticated -->
+            <template v-if="!isUserAuth">
+              <router-link
+                v-for="item of navItems"
+                :key="item.name"
+                :to="item.to"
+                class="button is-primary"
+              >
+                <span class="icon">
+                  <font-awesome-icon :icon="`fa-solid fa-${item.icon}`" />
+                </span>
+                <strong>{{ item.name }}</strong>
+              </router-link>
+            </template>
+
+            <!-- Display only if the user has been authenticated -->
+            <template v-if="isUserAuth">
+              <button
+                @click="signOutAction" 
+                class="button is-primary">
+                <span class="icon">
+                  <font-awesome-icon :icon="`fa-sign-out-alt`"/>
+                </span>
+                <strong>Logout</strong>
+              </button>
+            </template>
           </div>
         </div>
       </div>
@@ -37,6 +49,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 export default {
   data() {
     return {
@@ -45,6 +58,15 @@ export default {
         { name: "Register", to: "/register", icon: "key" }
       ]
     };
+  },
+  computed: {
+    ...mapGetters(["getUser", "isUserAuth"])
+  },
+  methods: {
+    ...mapActions(["signOutAction"]),
+    signOut() {
+      this.signOutAction();
+    }
   }
 };
 </script>
