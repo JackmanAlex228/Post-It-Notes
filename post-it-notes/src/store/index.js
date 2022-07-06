@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import mutations from './mutations'
-import actions from './actions'
-import getters from './getters'
+import mutations from './authentication/mutations'
+import actions from './authentication/actions'
+import getters from './authentication/getters'
 
 Vue.use(Vuex)
 

@@ -5,6 +5,8 @@ import { auth } from "@/firebase"
 
 const actions = {
 
+  // TODO: Create addNote action for testing
+
   /**
    * If the user is logged in, set the user to the user object, otherwise set the user to null.
    */
