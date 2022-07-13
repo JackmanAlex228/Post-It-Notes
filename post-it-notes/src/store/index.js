@@ -4,6 +4,8 @@ import mutations from './authentication/mutations'
 import actions from './authentication/actions'
 import getters from './authentication/getters'
 
+import noteActions from './notes/actions'
+
 Vue.use(Vuex)
 
 const initialState = () => {
@@ -14,5 +16,6 @@ export default new Vuex.Store({
   state: initialState(),
   mutations: mutations,
   actions: actions,
-  getters: getters
+  getters: getters,
+  noteActions: noteActions,
 });
